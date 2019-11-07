@@ -23,8 +23,16 @@ class Particle {
     this.dt = 0.1;
   }
 
-  giveXVelocity() {
-    this.xVel = -90;
+  giveVelocity(xVel,yVel) {
+      this.xVel = xVel;
+    if (this.xVel<=0) {
+      this.xDirection = 'left'
+    }
+    else {
+      this.xDirection = 'right'
+    }
+    this.yVel = yVel;
+
   }
 
   frictionalForce() {
@@ -63,6 +71,10 @@ class Particle {
   detectCollision() {
     if(this.yPos+this.radius>900) {
       this.yPos = 900-this.radius
+      this.yVel= -this.yVel*this.cor
+    }
+    if(this.yPos-this.radius<0) {
+      this.yPos = this.radius
       this.yVel= -this.yVel*this.cor
     }
     if(this.xPos+this.radius>500) {

@@ -1,21 +1,44 @@
 $( document ).ready(function() {
 
   setInterval(draw, 10);
+  //
+
   var cor = 0.5
   var cof = 0.5
-
+  //
   particle = new Particle(100,100,randomColour(),cof,cor)
 
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
 
-  $('#canvas').bind('click', function(canvas) {
+  var x1
+  var x2
+  var y1
+  var y2
+
+  $( "#canvas" ).mousedown(function(canvas) {
     var offset = $(this).offset();
-    x = canvas.clientX- offset.left;
-    y = canvas.clientY- offset.top;
-    particle = new Particle(x, y, randomColour(),cor,cof)
-    particle.giveXVelocity()
-  })
+    x1 = canvas.clientX- offset.left;
+    y1 = canvas.clientY- offset.top;
+
+  });
+
+  $( "#canvas").mouseup(function(canvas) {
+    var offset = $(this).offset();
+    x2 = canvas.clientX- offset.left;
+    y2 = canvas.clientY- offset.top;
+    particle = new Particle(x2, y2, randomColour(),cor,cof)
+    particle.giveVelocity(x2-x1,y2-y1)
+  });
+
+
+  // $('#canvas').bind('click', function(canvas) {
+  //   var offset = $(this).offset();
+  //   x = canvas.clientX- offset.left;
+  //   y = canvas.clientY- offset.top;
+  //   particle = new Particle(x, y, randomColour(),cor,cof)
+  //   particle.giveXVelocity()
+  // })
 
   $("#particle").submit(function(event) {
   event.preventDefault();
