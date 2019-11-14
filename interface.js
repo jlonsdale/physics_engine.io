@@ -6,7 +6,7 @@ $( document ).ready(function() {
   var cor = 0.5
   var cof = 0.5
   //
-  particle = new Particle(100,250,randomColour(),cof,cor)
+  particle = new Particle(250,250,randomColour(),cof,cor)
 
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
